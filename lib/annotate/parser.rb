@@ -48,7 +48,7 @@ module Annotate
       end
     end
 
-    def add_options_to_parser(option_parser) # rubocop:disable Metrics/MethodLength
+    def add_options_to_parser(option_parser) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       has_set_position = {}
 
       option_parser.banner = 'Usage: annotate [options] [model_file]*'
@@ -303,6 +303,11 @@ module Annotate
       option_parser.on('--with-comment',
                        "include database comments in model annotations") do
         env['with_comment'] = 'true'
+      end
+
+      option_parser.on('--with-comment-column',
+                       "include database comments in model annotations, as its own column, after all others") do
+        env['with_comment_column'] = 'true'
       end
     end
   end
